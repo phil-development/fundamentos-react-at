@@ -1,7 +1,12 @@
 import NavButton from "../../components/NavButton";
 import { Container, Painel, Header, Table } from "./styles";
 
+import { getHotels } from '../../utils/utils';
+
 export default function Dashboard() {
+
+    const hotels = getHotels();
+
     return (
         <Container>
 
@@ -24,16 +29,20 @@ export default function Dashboard() {
                         <th>Estado</th>
                         <th>Preço da Diária</th>
                         <th>Descrição</th>
+                        <th>Serviços</th>
                     </tr>
-                    <tr>
-                        <td>Hotel Exemplo</td>
-                        <td></td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td>São Paulo</td>
-                        <td>SP</td>
-                        <td>R$ 300,00</td>
-                        <td>Café da manhã incluso, Wi-Fi gratuito, piscina, academia, serviço de quarto 24h.</td>
-                    </tr>
+                    {hotels.map((hotel) => (
+                        <tr>
+                            <td>{hotel.name}</td>
+                            <td><img /></td>
+                            <td>{'⭐'.repeat(hotel.rating)}</td>
+                            <td>{hotel.city}</td>
+                            <td>{hotel.uf}</td>
+                            <td>R$ {hotel.price}</td>
+                            <td>{hotel.description}</td>
+                            <td>{hotel.descriptionServices}</td>
+                        </tr>
+                    ))}
                 </Table>
 
             </Painel>

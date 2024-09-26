@@ -2,7 +2,7 @@ import { Container, Content, Logo } from "./styles";
 
 import { RiHotelLine } from "react-icons/ri";
 
-import Search from './Components/Search/';
+import Search from '../Search/';
 import NavButton from "../NavButton";
 
 export default function Menu() {

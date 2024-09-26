@@ -47,7 +47,7 @@ export const Field = styled.div`
     input {
 
 
-        width: 100%;
+        width: 99%;
         height: 36px;
         padding: 0 8px;
 

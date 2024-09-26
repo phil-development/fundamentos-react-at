@@ -7,18 +7,9 @@ import { z } from 'zod';
 import { Container, Row, Field, Button } from "./styles";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-type UFResponse = {
-    id: number;
-    nome: string;
-    sigla: string;
-};
+import { UFResponse, CITYResponse, HotelFiltersSchema } from './types';
 
-type CITYResponse = {
-
-    id: number;
-    nome: string;
-
-};
+import { addHotel, nextId } from "../../utils/utils";
 
 const ACCEPTED_IMAGE_TYPES = [
     'image/jpeg',
@@ -27,12 +18,14 @@ const ACCEPTED_IMAGE_TYPES = [
     'image/webp',
 ];
 
-const hotelFiltersSchema = z.object({
+export const hotelFiltersSchema = z.object({
 
-    name: z.string().min(3, `O nome deve conter pelo menos 3 caracteres`),
+    id: z.number().default(nextId),
+    name: z.string().min(3, `O nome deve ter no minimo 3 caracteres`),
     price: z.number().positive(`O valor da diaria deve ser maior que zero!`),
-    description: z.string().min(32),
-    descriptionServices: z.string().min(32),
+    rating: z.number().min(1).max(5),
+    description: z.string().min(32, `A descrição deve ter no minimo 32 caracteres`),
+    descriptionServices: z.string().min(32, `A descrição deve ter no minimo 32 caracteres`),
     uf: z.string(),
     city: z.string(),
     hotelImage: z
@@ -49,9 +42,7 @@ const hotelFiltersSchema = z.object({
 
 });
 
-type HotelFiltersSchema = z.infer<typeof hotelFiltersSchema>;
-
-
+// Não tive tempo de deixar o componente reutilizavel, e nem de separa a logica em um arquivo de hook personalizado, foi o que deu de fazer :)
 export default function Form() {
 
     const {
@@ -70,7 +61,7 @@ export default function Form() {
 
     const handleFilterHotels = (data: HotelFiltersSchema) => {
 
-        console.log(data);
+        addHotel(data);
 
     };
 
@@ -117,17 +108,31 @@ export default function Form() {
 
             </Field>
 
-            <Field>
+            <Row>
 
-                <span>Preço da Diária</span>
-                <input
-                    placeholder="Insira o valor da diária"
-                    {...register('price', { valueAsNumber: true })}
-                    type="number"
-                />
-                {errors.price?.message && (<p>{errors.price?.message}</p>)}
+                <Field>
 
-            </Field>
+                    <span>Classificação</span>
+                    <input
+                        placeholder="Insira a classificação"
+                        {...register('rating', { valueAsNumber: true })}
+                    />
+
+                </Field>
+
+                <Field>
+
+                    <span>Preço da Diária</span>
+                    <input
+                        placeholder="Insira o valor da diária"
+                        {...register('price', { valueAsNumber: true })}
+                        type="number"
+                    />
+                    {errors.price?.message && (<p>{errors.price?.message}</p>)}
+
+                </Field>
+
+            </Row>
 
             <Field>
 

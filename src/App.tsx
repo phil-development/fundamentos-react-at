@@ -10,7 +10,7 @@ import Routes from './routes';
 
 export default function App() {
 
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   return (
     <ThemeProvider theme={theme === 'light' ? light : dark}>
