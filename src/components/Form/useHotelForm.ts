@@ -10,6 +10,7 @@ import {
     UFResponse,
     CITYResponse, HotelFiltersSchema
 } from './types';
+
 import { addHotel, nextId } from "../../utils/utils";
 
 const ACCEPTED_IMAGE_TYPES = [

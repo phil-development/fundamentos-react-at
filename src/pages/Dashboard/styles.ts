@@ -47,12 +47,6 @@ export const Header = styled.header`
         margin: 0 .5rem;
     }
 
-    @media (max-width: 425px){
-
-        height: 96px;
-
-    }
-
 `;
 
 export const Table = styled.table`

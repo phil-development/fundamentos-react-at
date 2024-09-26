@@ -1,13 +1,31 @@
-import { Container, Content, Card, Description } from './styles';
+import { useEffect, useState } from 'react';
+import { Container, Content } from './styles';
 
 import Menu from '../../components/Menu';
+import Search from '../../components/Search';
 
 import { getHotels } from '../../utils/utils';
-import NavButton from '../../components/NavButton';
+import { HotelFiltersSchema } from '../../components/Form/types';
+
+import Card from '../../components/Card';
 
 export default function Home() {
 
-    const hotels = getHotels();
+    const [hotels, setHotels] = useState<HotelFiltersSchema[]>([]);
+    const [filteredHotels, setFilteredHotels] = useState<HotelFiltersSchema[]>([]);
+
+    useEffect(() => {
+        const storedHotels = getHotels();
+        setHotels(storedHotels);
+        setFilteredHotels(storedHotels); // Inicialmente, exibe todos os hotéis
+    }, []);
+
+    const handleSearch = (searchTerm: string) => {
+        const filtered = hotels.filter(hotel =>
+            hotel.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredHotels(filtered);
+    };
 
     return (
         <Container>
@@ -18,31 +36,10 @@ export default function Home() {
 
                 <section>
 
-                    <h1>Hoteis</h1>
+                    <Search onSearch={handleSearch} />
 
-                    {hotels.map(hotel => (
-                        <Card key={hotel.id}>
-                            <img src={hotel.imageBase64} alt='image-hotel' />
-
-                            <Description>
-
-                                <div>
-                                    <h3>{hotel.name}</h3>
-                                    <span>{'⭐'.repeat(hotel.rating)}</span>
-                                </div>
-
-                                <h4>{hotel.price}</h4>
-
-                                <p>{hotel.description}</p>
-                                <p>{hotel.descriptionServices}</p>
-
-                                <p>{hotel.city} - {hotel.uf}</p>
-
-                                <NavButton title={`Detalhes`} toNavigate={`details/${hotel.id}`} />
-
-                            </Description>
-
-                        </Card>
+                    {filteredHotels.map(hotel => (
+                        <Card key={hotel.id} data={hotel} />
                     ))}
 
                 </section>

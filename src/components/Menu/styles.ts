@@ -23,8 +23,6 @@ export const Content = styled.div`
 
 `;
 
-export const Search = styled.div``;
-
 export const Logo = styled.div`
 
 
