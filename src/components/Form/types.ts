@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { hotelFiltersSchema } from './index';
+import { hotelFiltersSchema } from './useHotelForm';
 
 export type HotelFiltersSchema = z.infer<typeof hotelFiltersSchema>;
 

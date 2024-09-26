@@ -11,7 +11,7 @@ import Edit from "../pages/Edit";
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: '/fundamentos-react-at',
         element: <Home />
     },
     {

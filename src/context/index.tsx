@@ -1,6 +1,6 @@
 import usePersistedState from "../utils/usePersistedState";
 
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useCallback, useContext } from "react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 
 import dark from "../styles/themes/dark";
