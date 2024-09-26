@@ -47,49 +47,45 @@ export const Header = styled.header`
 
 `;
 
-export const CardDetails = styled.main`
+export const Content = styled.main`
 
     width: 100%;
+    max-width: 1200px;
+    height: auto;
+
+    overflow-x: auto;
     padding: 2rem;
+    border-radius: 2px;
     background-color: ${props => props.theme.colors.component};
-    display: flex;
-
-    img {
-
-        width: 25%;
-
-    }
-
-    @media (max-width: 1200px) {
-        
-        flex-direction: column;
-        max-width: 400px;
-
-        img {
-
-            width: 100%;
-
-        }
-
-    }
 
 `;
 
-export const Content = styled.div`
 
+export const Table = styled.table`
 
-    padding: 0 1rem;
+    width: 100%;
+    min-width: 800px;
+    margin: 1rem 0 0 0;
+    overflow-x: auto;
 
-    p {
+    th {
 
-        font-size: 1.2rem;
-        margin: 0 0 1rem 0;
+        text-align: left;
+        padding: .5rem 1rem;
+        background-color: ${props => props.theme.colors.background};
 
     }
 
-    @media (max-width: 1200px) {
-        
-        padding: 1rem 0 0 0;
+    td {
+
+        text-align: left;
+        padding: .5rem 1rem;
+        border: 1px solid ${props => props.theme.colors.background};
+        img {
+
+            width: 100px;
+
+        }
 
     }
 

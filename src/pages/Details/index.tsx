@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { Header, Container, CardDetails, Content } from './styles';
+import { Header, Container, Content, Table } from './styles';
 import { MdArrowBack } from "react-icons/md";
 
 import { getHotelById } from '../../utils/utils';
@@ -23,25 +23,36 @@ export default function Details() {
                 <h1>{hotel?.name}</h1>
             </Header>
 
-            <CardDetails>
+            <Content>
 
-                <img src={hotel?.imageBase64} alt='image-hotel' />
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Nome do Hotel</th>
+                            <th>Imagem</th>
+                            <th>Classificação</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>Preço da Diária</th>
+                            <th>Descrição</th>
+                            <th>Serviços</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr key={hotel.id}>
+                            <td>{hotel.name}</td>
+                            <td><img src={hotel.imageBase64} /></td>
+                            <td>{'⭐'.repeat(hotel.rating)}</td>
+                            <td>{hotel.city}</td>
+                            <td>{hotel.uf}</td>
+                            <td>R$ {hotel.price}</td>
+                            <td>{hotel.description}</td>
+                            <td>{hotel.descriptionServices}</td>
+                        </tr>
+                    </tbody>
+                </Table>
 
-                <Content>
-
-                    <p>{'⭐'.repeat(Number(hotel?.rating))}</p>
-
-                    <p>R$ {hotel?.price}</p>
-
-                    <p>{hotel?.description}</p>
-                    <p>{hotel?.descriptionServices}</p>
-
-                    <p>{hotel?.city} - {hotel?.uf}</p>
-
-
-                </Content>
-
-            </CardDetails>
+            </Content>
 
         </Container>
     );

@@ -1,14 +1,39 @@
 import { HotelFiltersSchema } from "../Form/types";
 
-import { Container, Content, Header, Description } from './styles';
+import { Container, Content, Header, Description, Button } from './styles';
 
 import NavButton from "../NavButton";
+import { useEffect, useState } from "react";
+import { addHotelToFavorites, isHotelFavorite, removeHotelFromFavorites } from "../../utils/utils";
 
 interface HotelCardProps {
     data: HotelFiltersSchema;
+    onFavoritesChange: () => void;
 };
 
-export default function Card({ data }: HotelCardProps) {
+export default function Card({ data, onFavoritesChange }: HotelCardProps) {
+
+    const [isFavorite, setIsFavorite] = useState(isHotelFavorite(data.id));
+
+    useEffect(() => {
+        setIsFavorite(isHotelFavorite(data.id));
+    }, [data.id]);
+
+    const handleToggleFavorite = () => {
+
+        if (isFavorite) {
+
+            removeHotelFromFavorites(data.id);
+
+        } else {
+
+            addHotelToFavorites(data.id);
+        };
+
+        setIsFavorite(!isFavorite);
+        onFavoritesChange();
+    };
+
     return (
         <Container>
             <img src={data.imageBase64} alt='image-hotel' />
@@ -31,6 +56,8 @@ export default function Card({ data }: HotelCardProps) {
                     <p>{data.descriptionServices}</p>
 
                 </Description>
+
+                <Button onClick={() => handleToggleFavorite()}>Favoritos</Button>
 
             </Content>
 

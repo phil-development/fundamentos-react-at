@@ -72,3 +72,15 @@ export const Description = styled.div`
     }
 
 `;
+
+export const Button = styled.button`
+
+    width: 6rem;
+    height: 2rem;
+    margin: 1rem 0 0 0;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    cursor: pointer;
+
+`;

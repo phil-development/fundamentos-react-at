@@ -101,6 +101,23 @@ export const editHotel = (hotelId: number, updatedHotelData: HotelFiltersSchema)
 
 };
 
+// FAVORITES
+export const isHotelFavorite = (hotelId: number): boolean => {
+    try {
+
+        const existingFavorites = localStorage.getItem(FAVORITES_KEY);
+        const parsedFavorites: number[] = existingFavorites ? JSON.parse(existingFavorites) : [];
+        return parsedFavorites.includes(hotelId);
+
+    } catch (error) {
+
+        console.error('Erro ao verificar se o hotel é favorito:', error);
+        return false;
+
+    };
+
+};
+
 export const addHotelToFavorites = (hotelId: number) => {
 
     try {
@@ -123,6 +140,45 @@ export const addHotelToFavorites = (hotelId: number) => {
     } catch (error) {
 
         console.error('Erro ao adicionar hotel aos favoritos:', error);
+
+    };
+};
+
+export const removeHotelFromFavorites = (hotelId: number) => {
+
+    try {
+
+        const existingFavorites = localStorage.getItem(FAVORITES_KEY);
+        const parsedFavorites: number[] = existingFavorites ? JSON.parse(existingFavorites) : [];
+
+        const index = parsedFavorites.indexOf(hotelId);
+
+        if (index !== -1) {
+
+            parsedFavorites.splice(index, 1);
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify(parsedFavorites));
+            console.log(`Hotel com ID ${hotelId} removido dos favoritos.`);
+
+        } else {
+
+            console.log(`Hotel com ID ${hotelId} não está nos favoritos.`);
+
+        }
+    } catch (error) {
+        console.error('Erro ao remover hotel dos favoritos:', error);
+    }
+};
+
+export const getFavoriteHotelIds = (): number[] => {
+    try {
+
+        const existingFavorites = localStorage.getItem(FAVORITES_KEY);
+        return existingFavorites ? JSON.parse(existingFavorites) : [];
+
+    } catch (error) {
+
+        console.error("Erro ao obter hotéis favoritos:", error);
+        return [];
 
     };
 };
