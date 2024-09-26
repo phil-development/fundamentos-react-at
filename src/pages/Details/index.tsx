@@ -39,15 +39,15 @@ export default function Details() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr key={hotel.id}>
-                            <td>{hotel.name}</td>
-                            <td><img src={hotel.imageBase64} /></td>
-                            <td>{'⭐'.repeat(hotel.rating)}</td>
-                            <td>{hotel.city}</td>
-                            <td>{hotel.uf}</td>
-                            <td>R$ {hotel.price}</td>
-                            <td>{hotel.description}</td>
-                            <td>{hotel.descriptionServices}</td>
+                        <tr key={hotel?.id}>
+                            <td>{hotel?.name}</td>
+                            <td><img src={hotel?.imageBase64} /></td>
+                            <td>{'⭐'.repeat(Number(hotel?.rating))}</td>
+                            <td>{hotel?.city}</td>
+                            <td>{hotel?.uf}</td>
+                            <td>R$ {hotel?.price}</td>
+                            <td>{hotel?.description}</td>
+                            <td>{hotel?.descriptionServices}</td>
                         </tr>
                     </tbody>
                 </Table>
