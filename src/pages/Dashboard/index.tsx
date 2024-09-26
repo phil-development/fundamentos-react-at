@@ -1,11 +1,28 @@
-import NavButton from "../../components/NavButton";
-import { Container, Painel, Header, Table } from "./styles";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { getHotels } from '../../utils/utils';
+import { Container, Painel, Header, Table, ButtonContainer } from "./styles";
+
+import { getHotels, deleteHotel } from '../../utils/utils';
+
+import { HotelFiltersSchema } from "../../components/Form/types";
+
+import { MdDelete, MdEditDocument } from "react-icons/md";
+
+import NavButton from "../../components/NavButton";
 
 export default function Dashboard() {
 
-    const hotels = getHotels();
+    const [hotelsData, setHotelsData] = useState<HotelFiltersSchema[]>([]);
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+
+        const hotels = getHotels();
+        setHotelsData(hotels);
+
+    }, []);
 
     return (
         <Container>
@@ -16,33 +33,50 @@ export default function Dashboard() {
 
                     <h1>Dashboard</h1>
 
-                    <NavButton title="Registrar" toNavigate="/register" />
+                    <div>
+
+                        <NavButton title="Inicio" toNavigate="/" />
+
+                        <span>|</span>
+
+                        <NavButton title="Registrar" toNavigate="/register" />
+
+                    </div>
 
                 </Header>
 
                 <Table>
-                    <tr>
-                        <th>Nome do Hotel</th>
-                        <th>Imagem</th>
-                        <th>Classificação</th>
-                        <th>Cidade</th>
-                        <th>Estado</th>
-                        <th>Preço da Diária</th>
-                        <th>Descrição</th>
-                        <th>Serviços</th>
-                    </tr>
-                    {hotels.map((hotel) => (
+                    <thead>
                         <tr>
-                            <td>{hotel.name}</td>
-                            <td><img /></td>
-                            <td>{'⭐'.repeat(hotel.rating)}</td>
-                            <td>{hotel.city}</td>
-                            <td>{hotel.uf}</td>
-                            <td>R$ {hotel.price}</td>
-                            <td>{hotel.description}</td>
-                            <td>{hotel.descriptionServices}</td>
+                            <th>Nome do Hotel</th>
+                            <th>Imagem</th>
+                            <th>Classificação</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>Preço da Diária</th>
+                            <th>Descrição</th>
+                            <th>Serviços</th>
+                            <th></th>
                         </tr>
-                    ))}
+                    </thead>
+                    <tbody>
+                        {hotelsData.map((hotel) => (
+                            <tr key={hotel.id}>
+                                <td>{hotel.name}</td>
+                                <td><img src={hotel.imageBase64} /></td>
+                                <td>{'⭐'.repeat(hotel.rating)}</td>
+                                <td>{hotel.city}</td>
+                                <td>{hotel.uf}</td>
+                                <td>R$ {hotel.price}</td>
+                                <td>{hotel.description}</td>
+                                <td>{hotel.descriptionServices}</td>
+                                <ButtonContainer>
+                                    <button onClick={() => navigate(`/edit/${hotel.id}`)}><MdEditDocument /></button>
+                                    <button key={hotel.id} onClick={() => deleteHotel(hotel.id)}><MdDelete /></button>
+                                </ButtonContainer>
+                            </tr>
+                        ))}
+                    </tbody>
                 </Table>
 
             </Painel>

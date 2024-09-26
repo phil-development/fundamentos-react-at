@@ -1,97 +1,9 @@
-import axios from "axios";
-import { ChangeEvent, useEffect, useState } from "react";
-
-import { useForm } from "react-hook-form";
-import { z } from 'zod';
-
+import { useHotelForm } from './useForm';
 import { Container, Row, Field, Button } from "./styles";
-import { zodResolver } from "@hookform/resolvers/zod";
 
-import { UFResponse, CITYResponse, HotelFiltersSchema } from './types';
-
-import { addHotel, nextId } from "../../utils/utils";
-
-const ACCEPTED_IMAGE_TYPES = [
-    'image/jpeg',
-    'image/jpg',
-    'image/png',
-    'image/webp',
-];
-
-export const hotelFiltersSchema = z.object({
-
-    id: z.number().default(nextId),
-    name: z.string().min(3, `O nome deve ter no minimo 3 caracteres`),
-    price: z.number().positive(`O valor da diaria deve ser maior que zero!`),
-    rating: z.number().min(1).max(5),
-    description: z.string().min(32, `A descrição deve ter no minimo 32 caracteres`),
-    descriptionServices: z.string().min(32, `A descrição deve ter no minimo 32 caracteres`),
-    uf: z.string(),
-    city: z.string(),
-    hotelImage: z
-        .instanceof(FileList)
-        .refine((files) => files?.length == 1, "Image is required.")
-        .refine(
-            (files) => files?.[0]?.size <= 10 * 1024 * 1024,
-            `Max file size is 10MB.`
-        )
-        .refine(
-            (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-            ".jpg, .jpeg, .png and .webp files are accepted."
-        ),
-
-});
-
-// Não tive tempo de deixar o componente reutilizavel, e nem de separa a logica em um arquivo de hook personalizado, foi o que deu de fazer :)
 export default function Form() {
 
-    const {
-        handleSubmit,
-        register,
-        formState: { errors }
-    } = useForm<HotelFiltersSchema>({
-        criteriaMode: 'all',
-        mode: 'all',
-        resolver: zodResolver(hotelFiltersSchema),
-    });
-
-    const [ufs, setUfs] = useState<UFResponse[]>([]);
-    const [cities, setCities] = useState<CITYResponse[]>([]);
-    const [currentUf, setCurrentUf] = useState('0');
-
-    const handleFilterHotels = (data: HotelFiltersSchema) => {
-
-        addHotel(data);
-
-    };
-
-    const getUFS = () => {
-
-        axios
-            .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
-            .then((response) => {
-                setUfs(response.data);
-            });
-    };
-
-    const getCities = () => {
-
-        axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${currentUf}/municipios`)
-            .then((response) => {
-                setCities(response.data);
-            });
-    };
-
-    const handleCurrentUf = (event: ChangeEvent<HTMLSelectElement>) => {
-
-        const UF = event.target.value;
-        setCurrentUf(UF);
-
-    };
-
-    useEffect(() => getUFS(), []);
-
-    useEffect(() => getCities(), [currentUf]);
+    const { handleSubmit, register, errors, ufs, cities, handleCurrentUf, handleFilterHotels } = useHotelForm();
 
     return (
         <Container onSubmit={handleSubmit(handleFilterHotels)}>
@@ -117,6 +29,7 @@ export default function Form() {
                         placeholder="Insira a classificação"
                         {...register('rating', { valueAsNumber: true })}
                     />
+                    {errors.rating?.message && (<p>{errors.rating?.message}</p>)}
 
                 </Field>
 

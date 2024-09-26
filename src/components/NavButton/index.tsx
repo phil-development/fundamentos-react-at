@@ -9,7 +9,7 @@ interface ButtonProps {
 
 export default function NavButton({ title, toNavigate }: ButtonProps) {
     return (
-        <Button to={toNavigate}>
+        <Button to={toNavigate} >
             {title}
         </Button>
     );

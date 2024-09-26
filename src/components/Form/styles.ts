@@ -33,7 +33,7 @@ export const Field = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin: 0 0 1.8rem 0;
+    margin: 0 0 2.5rem 0;
     
 
     span {
@@ -97,7 +97,7 @@ export const Field = styled.div`
         color: red;
         position: absolute;
         left: 0;
-        bottom: -18px;
+        bottom: -24px;
 
     }
 

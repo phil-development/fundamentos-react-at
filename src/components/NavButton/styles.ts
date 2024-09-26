@@ -8,6 +8,7 @@ export const Button = styled(NavLink)`
     background: transparent;
     color: ${props => props.theme.title === 'dark' ? props.theme.colors.blue : props.theme.colors.text};
     border: 1px solid ${props => props.theme.title === 'dark' ? props.theme.colors.blue : props.theme.colors.text};
+    text-align: center;
     text-transform: uppercase;
     font-family: 'Comfortaa', sans-serif;
     font-size: 1rem;
