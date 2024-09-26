@@ -1,6 +1,7 @@
 import { HotelFiltersSchema } from '../components/Form/types';
 
 const LOCAL_STORAGE_KEY = 'hotelData';
+const FAVORITES_KEY = 'favoriteHotels';
 
 let currentId = 0;
 
@@ -98,4 +99,30 @@ export const editHotel = (hotelId: number, updatedHotelData: HotelFiltersSchema)
 
     };
 
+};
+
+export const addHotelToFavorites = (hotelId: number) => {
+
+    try {
+
+        const existingFavorites = localStorage.getItem(FAVORITES_KEY);
+        const parsedFavorites: number[] = existingFavorites ? JSON.parse(existingFavorites) : [];
+
+        if (!parsedFavorites.includes(hotelId)) {
+
+            parsedFavorites.push(hotelId);
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify(parsedFavorites));
+            console.log(`Hotel com ID ${hotelId} adicionado aos favoritos.`);
+
+        } else {
+
+            console.log(`Hotel com ID ${hotelId} já está nos favoritos.`);
+
+        };
+
+    } catch (error) {
+
+        console.error('Erro ao adicionar hotel aos favoritos:', error);
+
+    };
 };

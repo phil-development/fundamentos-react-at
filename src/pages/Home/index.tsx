@@ -16,30 +16,43 @@ export default function Home() {
 
             <Content>
 
-                {hotels.map(hotel => (
-                    <Card key={hotel.id}>
-                        <img src={hotel.imageBase64} alt='image-hotel' />
+                <section>
 
-                        <Description>
+                    <h1>Hoteis</h1>
 
-                            <div>
-                                <h3>{hotel.name}</h3>
-                                <span>{'⭐'.repeat(hotel.rating)}</span>
-                            </div>
+                    {hotels.map(hotel => (
+                        <Card key={hotel.id}>
+                            <img src={hotel.imageBase64} alt='image-hotel' />
 
-                            <h4>{hotel.price}</h4>
+                            <Description>
 
-                            <p>{hotel.description}</p>
-                            <p>{hotel.descriptionServices}</p>
+                                <div>
+                                    <h3>{hotel.name}</h3>
+                                    <span>{'⭐'.repeat(hotel.rating)}</span>
+                                </div>
 
-                            <p>{hotel.city} - {hotel.uf}</p>
+                                <h4>{hotel.price}</h4>
 
-                            <NavButton title={`Detalhes`} toNavigate={`details/${hotel.id}`} />
+                                <p>{hotel.description}</p>
+                                <p>{hotel.descriptionServices}</p>
 
-                        </Description>
+                                <p>{hotel.city} - {hotel.uf}</p>
 
-                    </Card>
-                ))}
+                                <NavButton title={`Detalhes`} toNavigate={`details/${hotel.id}`} />
+
+                            </Description>
+
+                        </Card>
+                    ))}
+
+                </section>
+
+                <section>
+
+                    <h1>Favoritos</h1>
+
+                </section>
+
 
             </Content>
 

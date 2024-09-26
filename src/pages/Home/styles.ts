@@ -17,9 +17,28 @@ export const Content = styled.main`
     padding: 8rem 0 0 0;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
+
+    section {
+
+        width: 100%;
+        padding: 2rem 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+
+        h1 {
+
+            position: absolute;
+            top: 0;
+            left: 2rem;
+
+        }
+
+    }
+
 
 `;
 

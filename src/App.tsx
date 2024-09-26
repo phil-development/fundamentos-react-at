@@ -1,21 +1,14 @@
-import { useState } from 'react';
-
-import { ThemeProvider } from 'styled-components';
+import { CustomThemeProvider } from './context';
 
 import GlobalStyle from './styles/global';
-import dark from './styles/themes/dark';
-import light from './styles/themes/light';
 
 import Routes from './routes';
 
 export default function App() {
-
-  const [theme, setTheme] = useState('dark');
-
   return (
-    <ThemeProvider theme={theme === 'light' ? light : dark}>
+    <CustomThemeProvider>
       <GlobalStyle />
       <Routes />
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 };

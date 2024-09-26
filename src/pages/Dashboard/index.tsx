@@ -14,6 +14,7 @@ import NavButton from "../../components/NavButton";
 export default function Dashboard() {
 
     const [hotelsData, setHotelsData] = useState<HotelFiltersSchema[]>([]);
+    const [currentId, setCurrentId] = useState(0);
 
     const navigate = useNavigate()
 
@@ -22,7 +23,7 @@ export default function Dashboard() {
         const hotels = getHotels();
         setHotelsData(hotels);
 
-    }, []);
+    }, [currentId, []]);
 
     return (
         <Container>
@@ -72,7 +73,10 @@ export default function Dashboard() {
                                 <td>{hotel.descriptionServices}</td>
                                 <ButtonContainer>
                                     <button onClick={() => navigate(`/edit/${hotel.id}`)}><MdEditDocument /></button>
-                                    <button key={hotel.id} onClick={() => deleteHotel(hotel.id)}><MdDelete /></button>
+                                    <button key={hotel.id} onClick={() => {
+                                        setCurrentId(hotel.id);
+                                        deleteHotel(hotel.id);
+                                    }}><MdDelete /></button>
                                 </ButtonContainer>
                             </tr>
                         ))}

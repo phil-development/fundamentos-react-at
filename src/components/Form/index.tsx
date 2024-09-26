@@ -1,4 +1,4 @@
-import { useHotelForm } from './useForm';
+import { useHotelForm } from './useHotelForm';
 import { Container, Row, Field, Button } from "./styles";
 
 export default function Form() {

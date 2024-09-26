@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import {
     UFResponse,
     CITYResponse, HotelFiltersSchema
-} from '../../components/Form/types';
+} from './types';
 import { addHotel, nextId } from "../../utils/utils";
 
 const ACCEPTED_IMAGE_TYPES = [
@@ -26,12 +26,16 @@ export const hotelFiltersSchema = z.object({
     rating: z
         .number()
         .positive(`Escolha entre 1 a 5 estrelas`)
-        .min(1)
-        .max(5),
-    description: z.string().min(32, `A descrição deve ter no minimo 32 caracteres`),
+        .min(1, `Escolha entre 1 a 5 estrelas`)
+        .max(5, `Escolha entre 1 a 5 estrelas`),
+    description: z
+        .string()
+        .min(32, `A descrição deve ter no minimo 32 caracteres`)
+        .max(120, `A descrição deve ter no máximo 120 caracteres`),
     descriptionServices: z
         .string()
-        .min(32, `A descrição deve ter no minimo 32 caracteres`),
+        .min(32, `A descrição deve ter no minimo 32 caracteres`)
+        .max(120, `A descrição deve ter no máximo 120 caracteres`),
     uf: z.string(),
     city: z.string(),
     imageBase64: z.string().optional(),

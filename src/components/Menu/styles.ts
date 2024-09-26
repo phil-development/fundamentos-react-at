@@ -10,7 +10,7 @@ export const Container = styled.nav`
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;
-
+    z-index: 3;
     background-color: ${props => props.theme.colors.component};
 
 `;
