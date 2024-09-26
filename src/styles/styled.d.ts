@@ -8,6 +8,7 @@ declare module 'styled-components' {
 
         colors: {
 
+            blue: string;
             background: string;
             component: string;
             text: string;

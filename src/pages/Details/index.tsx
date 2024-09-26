@@ -1,0 +1,9 @@
+import { Container } from './styles';
+
+export default function Details() {
+    return (
+        <Container>
+            Details
+        </Container>
+    );
+};
