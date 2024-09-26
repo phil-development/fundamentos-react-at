@@ -16,14 +16,14 @@ export default function Dashboard() {
     const [hotelsData, setHotelsData] = useState<HotelFiltersSchema[]>([]);
     const [currentId, setCurrentId] = useState(0);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
 
         const hotels = getHotels();
         setHotelsData(hotels);
 
-    }, [currentId, []]);
+    }, [currentId]);
 
     return (
         <Container>

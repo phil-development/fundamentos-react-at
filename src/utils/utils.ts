@@ -87,18 +87,28 @@ export const deleteHotel = (hotelId: number) => {
 export const editHotel = (hotelId: number, updatedHotelData: HotelFiltersSchema) => {
 
     try {
-
         const existingData = localStorage.getItem(LOCAL_STORAGE_KEY);
-        const parsedData = existingData ? JSON.parse(existingData) : [];
-        parsedData[hotelId] = updatedHotelData;
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(parsedData));
+        const parsedData: HotelFiltersSchema[] = existingData ? JSON.parse(existingData) : [];
+
+        const index = parsedData.findIndex(hotel => hotel.id === hotelId);
+
+        if (index !== -1) {
+            parsedData[index] = updatedHotelData;
+
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(parsedData));
+            console.log(`Hotel com ID ${hotelId} editado com sucesso.`);
+
+        } else {
+
+            console.error(`Hotel com ID ${hotelId} não encontrado.`);
+
+        };
 
     } catch (error) {
 
         console.error('Erro ao editar hotel:', error);
 
     };
-
 };
 
 // FAVORITES

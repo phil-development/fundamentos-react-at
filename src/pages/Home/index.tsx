@@ -7,7 +7,6 @@ import Search from '../../components/Search';
 import {
     getHotels,
     getHotelById,
-    addHotelToFavorites,
     getFavoriteHotelIds,
 } from '../../utils/utils';
 import { HotelFiltersSchema } from '../../components/Form/types';
