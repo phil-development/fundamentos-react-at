@@ -6,10 +6,10 @@ import Details from "../pages/Details";
 import Register from "../pages/Register";
 import Edit from "../pages/Edit";
 
-export default function AppRoutes() {
+export default function appRoutes() {
     return (
 
-        <Router basename="/fundamentos-react-at">
+        <Router>
 
             <Routes>
 
