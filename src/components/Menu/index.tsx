@@ -27,7 +27,7 @@ export default function Menu() {
                     inputProps={{ 'aria-label': 'controlled' }}
                 />
 
-                <NavButton title={'Gerenciar'} toNavigate={'/fundamentos-react-at/dashboard'} />
+                <NavButton title={'Gerenciar'} toNavigate={'/dashboard'} />
 
             </Content>
 

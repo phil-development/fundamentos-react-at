@@ -40,7 +40,7 @@ export default function Card({ data, onFavoritesChange }: HotelCardProps) {
 
             <Content>
 
-                <NavButton title={`Detalhes`} toNavigate={`/fundamentos-react-at/details/${data.id}`} />
+                <NavButton title={`Detalhes`} toNavigate={`/details/${data.id}`} />
 
                 <Header>
                     <h3>{data.name}</h3>

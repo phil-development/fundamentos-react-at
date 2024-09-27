@@ -2,13 +2,13 @@ import { CustomThemeProvider } from './context';
 
 import GlobalStyle from './styles/global';
 
-import Routes from './routes';
+import AppRoutes from './routes';
 
 export default function App() {
   return (
     <CustomThemeProvider>
       <GlobalStyle />
-      <Routes />
+      <AppRoutes />
     </CustomThemeProvider>
   );
 };

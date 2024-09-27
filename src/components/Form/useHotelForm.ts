@@ -82,7 +82,7 @@ export function useHotelForm() {
 
         reader.readAsDataURL(file);
 
-        navigate("/fundamentos-react-at/dashboard");
+        navigate("/dashboard");
     };
 
     const getUFS = () => {
