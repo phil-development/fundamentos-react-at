@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export const Button = styled(Link)`
+export const Button = styled(NavLink)`
 
     padding: .5rem;
     background: transparent;

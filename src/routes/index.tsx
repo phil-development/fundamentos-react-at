@@ -1,4 +1,7 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+    createBrowserRouter,
+    RouterProvider,
+} from "react-router-dom";
 
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
@@ -6,22 +9,31 @@ import Details from "../pages/Details";
 import Register from "../pages/Register";
 import Edit from "../pages/Edit";
 
-export default function appRoutes() {
+const router = createBrowserRouter([
+    {
+        path: '/fundamentos-react-at',
+        element: <Home />
+    },
+    {
+        path: '/fundamentos-react-at/dashboard',
+        element: <Dashboard />
+    },
+    {
+        path: '/fundamentos-react-at/register',
+        element: <Register />
+    },
+    {
+        path: '/fundamentos-react-at/edit/:id',
+        element: <Edit />
+    },
+    {
+        path: '/fundamentos-react-at/details/:id',
+        element: <Details />
+    }
+]);
+
+export default function Routes() {
     return (
-
-        <Router basename="/">
-
-            <Routes>
-
-                <Route path="/" element={<Home />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/edit/:id" element={<Edit />} />
-                <Route path="/details/:id" element={<Details />} />
-
-            </Routes>
-
-        </Router>
-
+        <RouterProvider router={router} />
     );
 };

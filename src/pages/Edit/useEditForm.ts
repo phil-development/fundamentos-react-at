@@ -100,7 +100,7 @@ export function useEditForm() {
                 const base64String = reader.result as string;
                 const updatedHotelData = { ...data, imageBase64: base64String };
                 editHotel(data.id, updatedHotelData);
-                navigate("/dashboard");
+                navigate("/fundamentos-react-at/dashboard");
 
                 const updatedHotel = getHotelById(data.id);
                 if (updatedHotel) {
@@ -111,7 +111,7 @@ export function useEditForm() {
             reader.readAsDataURL(file);
         } else {
             editHotel(data.id, data);
-            navigate("/dashboard");
+            navigate("/fundamentos-react-at/dashboard");
 
             setHotel(data);
         }
