@@ -40,7 +40,7 @@ export default function Dashboard() {
 
                         <span>|</span>
 
-                        <NavButton title="Registrar" toNavigate="/fundamentos-react-at/register" />
+                        <NavButton title="Registrar" toNavigate="/register" />
 
                     </div>
 
@@ -72,7 +72,7 @@ export default function Dashboard() {
                                 <td>{hotel.description}</td>
                                 <td>{hotel.descriptionServices}</td>
                                 <ButtonContainer>
-                                    <button onClick={() => navigate(`/edit/${hotel.id}`)}><MdEditDocument /></button>
+                                    <button onClick={() => navigate(`/fundamentos-react-at/edit/${hotel.id}`)}><MdEditDocument /></button>
                                     <button key={hotel.id} onClick={() => {
                                         setCurrentId(hotel.id);
                                         deleteHotel(hotel.id);

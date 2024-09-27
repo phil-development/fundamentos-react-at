@@ -15,19 +15,19 @@ const router = createBrowserRouter([
         element: <Home />
     },
     {
-        path: '/dashboard',
+        path: '/fundamentos-react-at/dashboard',
         element: <Dashboard />
     },
     {
-        path: '/register',
+        path: '/fundamentos-react-at/register',
         element: <Register />
     },
     {
-        path: '/edit/:id',
+        path: '/fundamentos-react-at/edit/:id',
         element: <Edit />
     },
     {
-        path: '/details/:id',
+        path: '/fundamentos-react-at/details/:id',
         element: <Details />
     }
 ]);
