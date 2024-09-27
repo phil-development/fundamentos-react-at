@@ -40,7 +40,7 @@ export default function Dashboard() {
 
                         <span>|</span>
 
-                        <NavButton title="Registrar" toNavigate="/register" />
+                        <NavButton title="Registrar" toNavigate="/fundamentos-react-at/register" />
 
                     </div>
 
