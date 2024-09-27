@@ -9,7 +9,7 @@ import Edit from "../pages/Edit";
 export default function appRoutes() {
     return (
 
-        <Router>
+        <Router basename="/">
 
             <Routes>
 
