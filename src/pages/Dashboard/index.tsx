@@ -36,11 +36,11 @@ export default function Dashboard() {
 
                     <div>
 
-                        <NavButton title="Inicio" toNavigate="/" />
+                        <NavButton title="Inicio" toNavigate="/fundamentos-react-at" />
 
                         <span>|</span>
 
-                        <NavButton title="Registrar" toNavigate="/register" />
+                        <NavButton title="Registrar" toNavigate="/fundamentos-react-at/register" />
 
                     </div>
 
